@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/default.xhtml">
+
+	<ui:define name="content">
+
+		<h:form id="reg" role="form" class="form-inline">
+
+			<fieldset>
+				<legend>New Task</legend>
+
+				<div class="form-group">
+					<h:outputLabel for="title" value="Title:" />
+					<h:inputText id="title" value="#{newTask.title}"
+						class="form-control" />
+					<h:message for="title" errorClass="invalid" />
+				</div>
+
+				<div class="form-group">
+					<h:outputLabel for="description" value="Description:" />
+					<h:inputText id="description" value="#{newTask.description}"
+						class="form-control" />
+					<h:message for="description" errorClass="invalid" />
+				</div>
+
+				<div class="form-group">
+					<h:commandButton id="register"
+						action="#{taskRegistration.register}" value="Save"
+						class="btn btn-default" />
+					<h:outputText value=" Task saved!"
+						rendered="#{facesContext.postback and empty facesContext.messageList}"
+						style="color: green;" />
+				</div>
+
+			</fieldset>
+		</h:form>
+
+		<h2>Tasks</h2>
+		<h:panelGroup rendered="#{empty tasks}">
+			<em>No registered tasks.</em>
+		</h:panelGroup>
+		<h:dataTable var="_task" value="#{tasks}"
+			rendered="#{not empty tasks}" styleClass="table table-striped">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+                #{_task.id}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Title</f:facet>
+                #{_task.title}
+            </h:column>
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+                #{_task.description}
+            </h:column>
+			<h:column>
+				<f:facet name="header">REST URL</f:facet>
+				<a href="#{request.contextPath}/rest/tasks/#{_task.id}">/rest/tasks/#{_task.id}</a>
+			</h:column>
+			<f:facet name="footer">
+                REST URL for all tasks: <a
+					href="#{request.contextPath}/rest/tasks">/rest/tasks</a>
+			</f:facet>
+		</h:dataTable>
+
+	</ui:define>
+</ui:composition>

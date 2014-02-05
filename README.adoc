@@ -1,0 +1,28 @@
+JEE6 todo application
+=====================
+Hugues Bretin
+v1.0, 2004-02
+:doctype: book
+:numbered:
+:toc:
+
+[preface]
+Why another Todo app ?
+----------------------
+TODO:...
+
+Development environment setup
+-----------------------------
+Chapters that contain desc for dev env.
+footnote:[An example footnote.]
+
+How to build the app
+--------------------
+Chapters that contain desc for app build.
+footnote:[Another example footnote.]
+
+Resources
+---------
+https://code.google.com/p/selenium/wiki/PageObjects
+http://arquillian.org/modules/drone-extension/
+http://arquillian.org/guides/functional_testing_using_graphene/
