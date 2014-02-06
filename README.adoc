@@ -1,28 +1,29 @@
-JEE6 todo application
-=====================
-Hugues Bretin
-v1.0, 2004-02
-:doctype: book
-:numbered:
-:toc:
+Another JEE todo application
+============================
 
 [preface]
 Why another Todo app ?
 ----------------------
-TODO:...
+This was just a excuse to start playing with arquillian and selenium. +
+The target server is Glassfih because since arquillian comes from JBoss I wanted to be sure there was no adherence to a particular Application Server.
+
+The ear is composed of two artifacts :
+
+- an EJB jar with a simple task service
+- an war with a simple ui consuming that task service
 
 Development environment setup
 -----------------------------
-Chapters that contain desc for dev env.
-footnote:[An example footnote.]
+Standard maven setup and JDK 1.6. +
+The configured database is  MySQL one called `members` with `root:root` pair for login/password.
 
 How to build the app
 --------------------
-Chapters that contain desc for app build.
-footnote:[Another example footnote.]
+One the database is up, just run `mvn install` from root folder.
 
 Resources
 ---------
-https://code.google.com/p/selenium/wiki/PageObjects
-http://arquillian.org/modules/drone-extension/
-http://arquillian.org/guides/functional_testing_using_graphene/
+
+- https://code.google.com/p/selenium/wiki/PageObjects
+- http://arquillian.org/modules/drone-extension/
+- http://arquillian.org/guides/functional_testing_using_graphene/
