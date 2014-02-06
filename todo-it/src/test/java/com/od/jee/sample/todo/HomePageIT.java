@@ -10,18 +10,19 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class HomePageIT {
 
 	private String baseUrl;
-	private WebDriver driver;
+	private HomePage homePage;
 
 	@Before
 	public void openBrowser() {
 		baseUrl = System.getProperty("webapp.base.url");
-		driver = new HtmlUnitDriver();
+		WebDriver driver = new HtmlUnitDriver();
 		driver.get(baseUrl);
+		homePage = new HomePage(driver);
 	}
 
 	@Test
 	public void pageTitleShouldMatchAppName() {
-		assertEquals("Todo", driver.getTitle());
+		assertEquals("Todo", homePage.getTitle());
 	}
 
 }
