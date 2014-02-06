@@ -13,6 +13,7 @@
 		<module>todo-web</module>
 		<module>todo-ear</module>
 		<module>todo-it</module>
+		<module>todo-arquillian</module>
 	</modules>
 
 	<properties>

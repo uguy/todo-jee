@@ -47,13 +47,12 @@
 						<webModule>
 							<groupId>com.od.jee.sample</groupId>
 							<artifactId>todo-web</artifactId>
-							<!-- Define the context root for the webapp -->
 							<contextRoot>/todo</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 
 	</build>

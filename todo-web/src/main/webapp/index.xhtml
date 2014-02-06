@@ -7,64 +7,65 @@
 
 	<ui:define name="content">
 
-		<h:form id="reg" role="form" class="form-inline">
-
-			<fieldset>
-				<legend>New Task</legend>
-
-				<div class="form-group">
-					<h:outputLabel for="title" value="Title:" />
-					<h:inputText id="title" value="#{newTask.title}"
-						class="form-control" />
-					<h:message for="title" errorClass="invalid" />
-				</div>
-
-				<div class="form-group">
-					<h:outputLabel for="description" value="Description:" />
-					<h:inputText id="description" value="#{newTask.description}"
-						class="form-control" />
-					<h:message for="description" errorClass="invalid" />
-				</div>
-
-				<div class="form-group">
-					<h:commandButton id="register"
-						action="#{taskRegistration.register}" value="Save"
-						class="btn btn-default" />
-					<h:outputText value=" Task saved!"
-						rendered="#{facesContext.postback and empty facesContext.messageList}"
-						style="color: green;" />
-				</div>
-
-			</fieldset>
-		</h:form>
-
-		<h2>Tasks</h2>
-		<h:panelGroup rendered="#{empty tasks}">
-			<em>No registered tasks.</em>
-		</h:panelGroup>
-		<h:dataTable var="_task" value="#{tasks}"
-			rendered="#{not empty tasks}" styleClass="table table-striped">
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-                #{_task.id}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Title</f:facet>
-                #{_task.title}
-            </h:column>
-			<h:column>
-				<f:facet name="header">Description</f:facet>
-                #{_task.description}
-            </h:column>
-			<h:column>
-				<f:facet name="header">REST URL</f:facet>
-				<a href="#{request.contextPath}/rest/tasks/#{_task.id}">/rest/tasks/#{_task.id}</a>
-			</h:column>
-			<f:facet name="footer">
-                REST URL for all tasks: <a
-					href="#{request.contextPath}/rest/tasks">/rest/tasks</a>
-			</f:facet>
-		</h:dataTable>
+		<div class="row">
+			<div class="col-lg-4">
+				<h2>New Task</h2>
+				<h:form id="taskForm" role="form" class="form-horizontal">
+					<fieldset>
+						<div class="form-group">
+							<h:outputLabel for="title" value="Title:" />
+							<h:inputText id="title" value="#{newTask.title}"
+								class="form-control" />
+							<h:message for="title" errorClass="help-block" />
+						</div>
+						<div class="form-group">
+							<h:outputLabel for="description" value="Description:" />
+							<h:inputText id="description" value="#{newTask.description}"
+								class="form-control" />
+							<h:message for="description" errorClass="help-block" />
+						</div>
+						<div class="form-group">
+							<h:commandButton id="register"
+								action="#{taskRegistration.register}" value="Save"
+								class="btn btn-default" />
+							<h:outputText value=" Task saved!"
+								rendered="#{facesContext.postback and empty facesContext.messageList}"
+								style="color:green" />
+						</div>
+					</fieldset>
+				</h:form>
+			</div>
+			<div class="col-lg-8">
+				<h2>Tasks</h2>
+				<h:dataTable var="_task" value="#{tasks}" id="taskList"
+					styleClass="table table-striped">
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+		                #{_task.id}
+		            </h:column>
+					<h:column>
+						<f:facet name="header">Title</f:facet>
+		                #{_task.title}
+		            </h:column>
+					<h:column>
+						<f:facet name="header">Description</f:facet>
+			                #{_task.description}
+			            </h:column>
+					<h:column>
+						<f:facet name="header">Done ?</f:facet>
+						<h:selectBooleanCheckbox value="#{_task.done}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">REST URL</f:facet>
+						<a href="#{request.contextPath}/api/tasks/#{_task.id}">/api/tasks/#{_task.id}</a>
+					</h:column>
+					<f:facet name="footer">
+		                REST URL for all tasks: <a
+							href="#{request.contextPath}/api/tasks">/api/tasks</a>
+					</f:facet>
+				</h:dataTable>
+			</div>
+		</div>
 
 	</ui:define>
 </ui:composition>
