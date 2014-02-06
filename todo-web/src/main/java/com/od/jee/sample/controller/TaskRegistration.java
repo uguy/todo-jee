@@ -1,19 +1,14 @@
 package com.od.jee.sample.controller;
 
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateful;
-import javax.ejb.Stateless;
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Model;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import com.od.jee.sample.model.Task;
 import com.od.jee.sample.repository.TaskService;
