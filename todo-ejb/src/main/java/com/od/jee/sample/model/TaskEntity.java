@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "title"))
-public class Task implements Serializable {
+@Table(name = "TASK", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
+public class TaskEntity implements Serializable {
 	/** Default value included to remove warning. Remove or modify at will. **/
 	private static final long serialVersionUID = 1L;
 

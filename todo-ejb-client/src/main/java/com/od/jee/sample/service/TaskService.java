@@ -2,8 +2,11 @@ package com.od.jee.sample.service;
 
 import java.util.List;
 
-import com.od.jee.sample.model.Task;
+import javax.ejb.Remote;
 
+import com.od.jee.sample.dto.Task;
+
+@Remote
 public interface TaskService {
 
 	public abstract Task save(Task task);

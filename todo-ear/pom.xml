@@ -16,12 +16,9 @@
 
 	<dependencies>
 
-		<!-- Depend on the ejb module and war so that we can package them -->
-		<dependency>
-			<groupId>com.od.jee.sample</groupId>
-			<artifactId>todo-web</artifactId>
-			<type>war</type>
-		</dependency>
+		<!-- Depend on the ejb module and war so that we can package them <dependency> 
+			<groupId>com.od.jee.sample</groupId> <artifactId>todo-web</artifactId> <type>war</type> 
+			</dependency> -->
 		<dependency>
 			<groupId>com.od.jee.sample</groupId>
 			<artifactId>todo-ejb</artifactId>
@@ -43,12 +40,12 @@
 					<version>6</version>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<modules>
-						<!-- Register our War as a web module, and set the context root -->
-						<webModule>
+						<ejbModule>
 							<groupId>com.od.jee.sample</groupId>
-							<artifactId>todo-web</artifactId>
-							<contextRoot>/todo</contextRoot>
-						</webModule>
+							<artifactId>todo-ejb</artifactId>
+						</ejbModule>
+						<!-- <webModule> <groupId>com.od.jee.sample</groupId> <artifactId>todo-web</artifactId> 
+							<contextRoot>/todo</contextRoot> </webModule> -->
 					</modules>
 				</configuration>
 			</plugin>

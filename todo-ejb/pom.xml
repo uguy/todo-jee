@@ -20,6 +20,20 @@
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 		</dependency>
+		
+		<!-- API Contract -->
+		<dependency>
+			<groupId>com.od.jee.sample</groupId>
+			<artifactId>todo-ejb-client</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<!-- Mapper for Entity to DTO -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.4.0</version>
+		</dependency>
 
 		<!-- Test scope dependencies -->
 		<dependency>
@@ -45,7 +59,7 @@
 	<profiles>
 
 		<profile>
-	
+
 			<id>default</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
