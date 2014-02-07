@@ -14,7 +14,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+
 			<dependency>
 				<groupId>org.jboss.arquillian</groupId>
 				<artifactId>arquillian-bom</artifactId>
@@ -44,15 +44,9 @@
 
 	<dependencies>
 
-		<!-- Depend on the ejb module and war so that we can package them -->
 		<dependency>
 			<groupId>com.od.jee.sample</groupId>
-			<artifactId>todo-web</artifactId>
-			<type>war</type>
-		</dependency>
-		<dependency>
-			<groupId>com.od.jee.sample</groupId>
-			<artifactId>todo-ear</artifactId>
+			<artifactId>todo-ear-all</artifactId>
 			<version>1.0-SNAPSHOT</version>
 			<type>ear</type>
 		</dependency>

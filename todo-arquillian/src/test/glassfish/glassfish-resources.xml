@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
-	<!-- 	
+	 
 	<jdbc-connection-pool 
 		name="TaskPool"
 		res-type="javax.sql.ConnectionPoolDataSource" 
@@ -15,9 +15,8 @@
 		pool-name="TaskPool" 
 		jndi-name="jdbc/TaskDS">
 	</jdbc-resource>
-	 -->
 	
-	<jdbc-connection-pool driver-classname="" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource" res-type="javax.sql.ConnectionPoolDataSource" name="TaskPool">
+	<!-- <jdbc-connection-pool driver-classname="" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource" res-type="javax.sql.ConnectionPoolDataSource" name="TaskPool">
       <property name="portNumber" value="3306"></property>
       <property name="databaseName" value="members"></property>
       <property name="serverName" value="localhost"></property>
@@ -25,5 +24,5 @@
       <property name="password" value="root"></property>
     </jdbc-connection-pool>
     <jdbc-resource pool-name="TaskPool" jndi-name="jdbc/TaskDS"></jdbc-resource>
-        
+         -->
 </resources>

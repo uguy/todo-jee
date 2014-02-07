@@ -24,6 +24,7 @@
       <property name="DatabaseName" value="sun-appserv-samples"></property>
       <property name="connectionAttributes" value=";create=true"></property>
     </jdbc-connection-pool>
+    <!--
     <jdbc-connection-pool driver-classname="" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource" res-type="javax.sql.ConnectionPoolDataSource" description="" name="TaskPool">
       <property name="portNumber" value="3306"></property>
       <property name="databaseName" value="members"></property>
@@ -31,14 +32,14 @@
       <property name="user" value="root"></property>
       <property name="password" value="root"></property>
     </jdbc-connection-pool>
-    <jdbc-resource pool-name="TaskPool" description="" jndi-name="jdbc/TaskDS"></jdbc-resource>
+    <jdbc-resource pool-name="TaskPool" description="" jndi-name="jdbc/TaskDS"></jdbc-resource>-->
     
-   <!--  <jdbc-connection-pool datasource-classname="org.h2.jdbcx.JdbcDataSource" res-type="javax.sql.ConnectionPoolDataSource" name="TaskPool">
+    <jdbc-connection-pool datasource-classname="org.h2.jdbcx.JdbcDataSource" res-type="javax.sql.ConnectionPoolDataSource" name="TaskPool">
       <property name="url" value="jdbc:h2:mem:tasks"></property>
       <property name="user" value="sa"></property>
       <property name="password" value="sa"></property>
     </jdbc-connection-pool>
-    <jdbc-resource pool-name="TaskPool" description="" jndi-name="jdbc/TaskDS"></jdbc-resource> -->
+    <jdbc-resource pool-name="TaskPool" description="" jndi-name="jdbc/TaskDS"></jdbc-resource>
     
   </resources>
   <servers>
