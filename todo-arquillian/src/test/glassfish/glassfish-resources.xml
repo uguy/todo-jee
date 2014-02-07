@@ -2,18 +2,16 @@
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
 	<jdbc-connection-pool 
-		name="MemberPool"
+		name="TaskPool"
 		res-type="javax.sql.ConnectionPoolDataSource" 
-		datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource"
+		datasource-classname="org.h2.jdbcx.JdbcDataSource"
 		>
-		<property name="portNumber" value="3306"></property>
-		<property name="databaseName" value="members"></property>
-		<property name="serverName" value="localhost"></property>
-		<property name="user" value="root"></property>
-		<property name="password" value="root"></property>
+		<property name="url" value="jdbc:h2:mem:tasks"></property>
+		<property name="user" value="sa"></property>
+		<property name="password" value="sa"></property>
 	</jdbc-connection-pool>
 	<jdbc-resource 
-		pool-name="MemberPool" 
-		jndi-name="jdbc/memberDS">
+		pool-name="TaskPool" 
+		jndi-name="jdbc/TaskDS">
 	</jdbc-resource>
 </resources>

@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.od.jee.sample.model.Task;
-import com.od.jee.sample.repository.TaskService;
+import com.od.jee.sample.service.TaskService;
 
 // The @Stateful annotation eliminates the need for manual transaction demarcation
 @Stateful

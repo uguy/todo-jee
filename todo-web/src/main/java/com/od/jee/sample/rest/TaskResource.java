@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.od.jee.sample.model.Task;
-import com.od.jee.sample.repository.TaskService;
+import com.od.jee.sample.service.TaskService;
 
 @Path("/tasks")
 @RequestScoped

@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.od.jee.sample.model.Task;
-import com.od.jee.sample.repository.TaskService;
+import com.od.jee.sample.service.TaskService;
 
 @RequestScoped
 public class TaskListProducer implements Serializable {
