@@ -4,22 +4,24 @@ Another JEE todo application
 [preface]
 Why another Todo app ?
 ----------------------
-This was just a excuse to start playing with arquillian and selenium. +
-The target server is Glassfih because since arquillian comes from JBoss I wanted to be sure there was no adherence to a particular Application Server.
+This was just an excuse to start playing with arquillian and selenium. +
+The target server is Glassfish because since arquillian comes from JBoss I wanted to be sure there was no adherence to a particular Application Server.
 
-The ear is composed of two artifacts :
+The todo-ear-all is composed of two artifacts :
 
-- an EJB jar with a simple task service
+- an EJB jar with a simple task service with remote access enable
 - an war with a simple ui consuming that task service
+
+The todo-ear has only the EJB packaged in it, so the that the war can be deployed separately.
 
 Development environment setup
 -----------------------------
 Standard maven setup and JDK 1.6. +
-The configured database is  MySQL one called `members` with `root:root` pair for login/password.
+The configured database is  an H2 one.
 
 How to build the app
 --------------------
-One the database is up, just run `mvn install` from root folder.
+Just run `mvn install` from root folder.
 
 Resources
 ---------
