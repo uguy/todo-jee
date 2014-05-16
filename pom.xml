@@ -14,6 +14,7 @@
 		<module>todo-ear</module>
 		<module>todo-it</module>
 		<module>todo-arquillian</module>
+		<module>todo-cargo</module>
 		<module>todo-ejb-client</module>
 		<module>todo-ear-all</module>
 	</modules>

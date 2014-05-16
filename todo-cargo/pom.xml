@@ -1,0 +1,207 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.od.jee.sample</groupId>
+		<artifactId>todo</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>todo-cargo</artifactId>
+	
+	<properties>
+		<app.context>todo</app.context>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.od.jee.sample</groupId>
+			<artifactId>todo-ear-all</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<type>ear</type>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.3.175</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.39.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+
+			<!-- define a free tcp port for testing on app server -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<id>reserve-network-port</id>
+						<goals>
+							<goal>reserve-network-port</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<portNames>
+								<portName>test.reserved-port</portName>
+							</portNames>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- configure integration tests -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.7.2</version>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<!-- gives access to the defined port -->
+							<systemPropertyVariables>
+								<webapp.base.url>http://localhost:${test.reserved-port}/${app.context}</webapp.base.url>
+							</systemPropertyVariables>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>					
+				</executions>
+			</plugin>
+
+
+			<!-- app server life cycle -->
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.8</version>
+				<configuration>
+					<container>
+						<containerId>glassfish3x</containerId>
+						<zipUrlInstaller>
+<!-- 							<url>http://download.java.net/glassfish/3.2/promoted/glassfish-3.2-b04.zip</url> -->
+							<url>http://download.java.net/glassfish/3.1.2.2/release/glassfish-3.1.2.2.zip</url>
+							<downloadDir>${basedir}/download-app-serv</downloadDir>
+						</zipUrlInstaller>
+						<dependencies>
+							<dependency>
+								<groupId>com.h2database</groupId>
+								<artifactId>h2</artifactId>
+							</dependency>
+						</dependencies>
+					</container>
+					<configuration>
+						<properties>
+							<!-- defines the http port -->
+							<cargo.servlet.port>${test.reserved-port}</cargo.servlet.port>
+							<cargo.datasource.datasource1>
+							cargo.datasource.url=jdbc:h2:mem:tasks|
+							cargo.datasource.driver=org.h2.Driver|
+							cargo.datasource.jndi=jdbc/TaskDS|
+							cargo.datasource.username=sa|
+							cargo.datasource.password=sa</cargo.datasource.datasource1>
+						</properties>
+					</configuration>
+				</configuration>
+				<executions>
+					<execution>
+						<id>start-server</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>deploy-war</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>redeploy</goal>
+						</goals>
+						<configuration>
+							<deployables>
+								<deployable>
+									<groupId>com.od.jee.sample</groupId>
+									<artifactId>todo-ear-all</artifactId>
+									<type>ear</type>
+								</deployable>
+							</deployables>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>undeploy-war</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>undeploy</goal>
+						</goals>
+					</execution>
+
+					<execution>
+						<id>stop-server</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop</goal>
+						</goals>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											build-helper-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.8,)
+										</versionRange>
+										<goals>
+											<goal>
+												reserve-network-port
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
